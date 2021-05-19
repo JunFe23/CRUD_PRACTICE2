@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>관리자</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!-- <link href="/web/css/contents.css" rel="stylesheet" type="text/css" /> -->
+<link th:href="@{/css/default.css}" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+	});	
+
+</script>
+</head>
+<body >
+
+	<div id="wrap">
+		
+
+		<div id="sub_container">
+			<div id="contentsWrap" class="sub_con5">
+				<div class="board_form">   
+		            <div class="con_title">
+		               <p>게시판 상세보기</p>   
+		            </div>
+				<div class="contents">
+					<div class="btnSet clfix mgb15">
+						<span class="fr">
+						
+                            <span class="button"><a href="#">물품구매</a></span>
+							<span class="button"> <a href="/web/cartAdd.do?pk=${pInfo.pk}">장바구니</a></span>						
+							<span class="button"><a href="/web/clientList.do">목록</a></span>
+						</span>
+					</div>
+					<table class="bbsList">
+						<colgroup>
+							<col width="400" />
+                            <col width="100" />
+                            <col width="" />
+						</colgroup>
+						<tr>
+							<th scope="col" class="fir">이미지</th>
+                             <th scope="col">글번호</th>
+                             <td th:text="${info.no}"></td>
+                        </tr>
+                        <tr>
+                        
+                          <td class="fir" rowspan="7"><img th:src="@{/upload/{img}(img=${info.img})}" width="400" height="200"/></td>
+                          <th scope="col">판매자</th>
+                          <td th:text="${info.id}"></td>
+                        </tr>
+                        <tr>
+                          <th scope="col">상품명</th>
+                          <td th:text="${info.productname}"></td>
+                        </tr>
+                        <tr>
+                          <th scope="col">가격</th>
+                          <td th:text="${info.price}"></td>
+                        </tr>
+                        <tr>
+                          <th scope="col">원산지</th>
+                          <td th:text="${info.country}"></td>
+                        </tr>
+                        <tr>
+                          <th scope="col">품목</th>
+                          <td th:text="${info.kinds}"></td>
+                        </tr>
+                        <tr>
+                          <th scope="col">등록일</th>
+                          <td th:text="${info.regdate}"></td>
+                        </tr>                        
+					</table>
+					
+				</div>
+			</div>
+		</div>
+		</div>
+		
+
+	</div>
+</body>
+</html>
+
+
+
+
+
+

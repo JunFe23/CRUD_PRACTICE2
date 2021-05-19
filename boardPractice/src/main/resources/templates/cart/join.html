@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>관리자</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="copyright" content="Copyright 2009 @ high1 all rights reserved" />
+    <link th:href="@{/css/contents.css}" rel="stylesheet"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            $("input#btnSubmit").click(function(){
+                if($("input#id").val()==''||$("input#pw").val()==''||$("input#name").val()==''){
+                    alert('id password name Check!');
+                    $("input#name").val('');
+                    $("input#id").val('');
+                    $("input#pw").val('');
+                    $("input#name").focus();
+                    return false;
+                }
+                $("form").submit();
+
+            });
+        });
+    </script>
+</head>
+<body>
+
+<form name="login" method="post" action="/insertMember">
+    <div id="loginWrapper">
+        <div class="loginForm">
+            <fieldset>
+                <legend>회원가입</legend>
+                <dl>
+                    <dt>NAME</dt>
+                    <dd><input type="text" name="name" class="text" id="name" /></dd>
+
+                    <dt>ID</dt>
+                    <dd><input type="text" name="id" class="text" id="id" /></dd>
+
+                    <dt>PASSWORD</dt>
+                    <dd><input type="password" name="pw" class="text" id="pw" /></dd>
+                </dl>
+                <div class="btn">
+                    <input type="button" id="btnSubmit"  name="JOIN" value="가입"/>
+                </div>
+
+
+
+            </fieldset>
+
+
+        </div>
+    </div>
+</form>
+</body>
+</html>

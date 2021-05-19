@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.newlearn.mapper.BoardMapper">
+
+    <select id="getProductBoardList" resultType="com.example.newlearn.dto.ProductDto">
+        SELECT * FROM PRODUCTLIST
+        ORDER BY no
+    </select>
+
+    <select id="productBoardDetail" parameterType="int" resultType="com.example.newlearn.dto.ProductDto">
+        SELECT * FROM PRODUCTLIST
+        WHERE no=#{no}
+    </select>
+
+    <insert id="productBoardInsert" parameterType="com.example.newlearn.dto.ProductDto" keyProperty="b_no">
+        INSERT INTO PRODUCTLIST (b_no, title, content, writer, reg_date)
+        VALUES(AUTO_INCREASE.nextval,#{title}, #{content}, #{writer},default)
+
+    </insert>
+
+    <update id="productBoardUpdate" parameterType="com.example.newlearn.dto.ProductDto">
+
+        update PRODUCTLIST set
+        title=<if test="title != null">#{title}</if>,
+        content=<if test="content != null">#{content}</if>
+        where b_no=#{b_no}
+
+    </update>
+
+    <delete id="productBoardDelete" parameterType="int">
+        DELETE FROM PRODUCTLIST WHERE no=#{no}
+    </delete>
+</mapper>
+
+

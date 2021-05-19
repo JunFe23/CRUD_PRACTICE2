@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.newlearn.mapper.MemberMapper">
+
+    <insert id="memberInsert" parameterType="com.example.newlearn.dto.MemberDto" keyProperty="memberId">
+        INSERT INTO MEMBER (memberId, id, pw, name)
+        VALUES(nextval('member_seq'),#{id}, #{pw}, #{name})
+
+    </insert>
+
+    <select id="memberCheck" parameterType="String" resultType="String">
+        SELECT pw FROM MEMBER
+        WHERE id=#{VALUE}
+    </select>
+
+    <update id="memberUpdate" parameterType="com.example.newlearn.dto.ProductDto">
+
+        update PRODUCTLIST set
+        title=<if test="title != null">#{title}</if>,
+        content=<if test="content != null">#{content}</if>
+        where b_no=#{b_no}
+
+    </update>
+
+    <delete id="memberDelete" parameterType="int">
+        DELETE FROM PRODUCTLIST WHERE no=#{no}
+    </delete>
+</mapper>
+
+
