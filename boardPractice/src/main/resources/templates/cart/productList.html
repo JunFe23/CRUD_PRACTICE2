@@ -36,7 +36,7 @@
 					<div class="btnSet clfix mgb15">
 						<span class="fr"> <span class="button"><a th:href="@{/add}">등록</a></span>
 						</span>&nbsp;
-						<span class="fr"> <span class="button"><a href="#">목록</a></span>
+						<span class="fr"> <span class="button"><a th:href="@{/product}">목록</a></span>
 						</span>
 					</div>
 
@@ -98,15 +98,15 @@
 										<!--/*@thymesVar id="no" type=""*/-->
 										<td th:text="${data.no}"> </td>
 										<td>
-										<a th:text="${data.productname}" th:href="@{/productInfo/{no}(no=${data.no})}">
+										<a th:text="${data.productName}" th:href="@{/productInfo/{no}(no=${data.no})}">
 										
 										</a>
 										</td>
 										<td>
-										<img th:src="@{/upload/{img}(img=${data.img})}" width="50" height="50"></img></td>
-										<td th:text="${data.country}"></td>
-										<td th:text="${data.price}"></td>
-										<td th:text="${data.kinds}"></td>
+										<img th:src="@{/upload/{filename}(filename=${data.fileName})}" width="50" height="50"></img></td>
+										<td th:text="${data.productOrigin}"></td>
+										<td th:text="${data.productPrice}"></td>
+										<td th:text="${data.productCategory}"></td>
 										<td th:text="${data.regdate}"></td>
 										<td th:text="${data.id}"></td>
 									

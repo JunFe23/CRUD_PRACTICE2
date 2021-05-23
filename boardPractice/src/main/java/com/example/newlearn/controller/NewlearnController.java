@@ -7,13 +7,12 @@ import com.example.newlearn.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.FileOutputStream;
 import java.util.List;
 
 @Controller
@@ -74,7 +73,45 @@ public class NewlearnController {
     }
 
     @RequestMapping("/add")
-    private String productAdd() {
+    private String productAdd(Model model, HttpSession session) {
+        System.out.println("NewlearnController.productAdd");
+        model.addAttribute("pList",boardService.getMyProductList((String)session.getAttribute("id")));
         return "cart/productAdd";
     }
+
+    @RequestMapping("/productInsert")
+    public String productInsert(ProductDto productDto, @RequestParam(value="file",required = false)MultipartFile file) {
+        //upload
+        String loc="/Users/junfe/Desktop/Coding/Spring/연습/boardPractice/src/main/resources/static/upload/";
+        System.out.println("NewlearnController.productInsert");
+        FileOutputStream fos = null;
+        String fileName = file.getOriginalFilename();
+        if(fileName.length()>0) {
+            try {
+                fos = new FileOutputStream(loc.concat(fileName));
+                fos.write(file.getBytes());
+                productDto.setFileName(file.getOriginalFilename());
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    fos.close();
+                } catch (Exception e2) {
+
+                }
+            }
+
+        }
+        if(productDto.getNo()==0) {
+//            productDto.setFileName("noimg.png");
+            boardService.productBoardInsert(productDto);
+        } else{
+            boardService.productBoardUpdate(productDto);
+        }
+        System.out.println("productDto = " + productDto);
+
+        return "redirect:/product";
+    }
+
+
 }

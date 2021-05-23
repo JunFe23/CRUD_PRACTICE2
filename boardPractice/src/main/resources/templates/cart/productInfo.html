@@ -32,7 +32,7 @@
 						
                             <span class="button"><a href="#">물품구매</a></span>
 							<span class="button"> <a href="/web/cartAdd.do?pk=${pInfo.pk}">장바구니</a></span>						
-							<span class="button"><a href="/web/clientList.do">목록</a></span>
+							<span class="button"><a th:href="@{/product}">목록</a></span>
 						</span>
 					</div>
 					<table class="bbsList">
@@ -48,25 +48,25 @@
                         </tr>
                         <tr>
                         
-                          <td class="fir" rowspan="7"><img th:src="@{/upload/{img}(img=${info.img})}" width="400" height="200"/></td>
+                          <td class="fir" rowspan="7"><img th:src="@{/upload/{fileName}(fileName=${info.fileName})}" width="400" height="200"/></td>
                           <th scope="col">판매자</th>
                           <td th:text="${info.id}"></td>
                         </tr>
                         <tr>
                           <th scope="col">상품명</th>
-                          <td th:text="${info.productname}"></td>
+                          <td th:text="${info.productName}"></td>
                         </tr>
                         <tr>
                           <th scope="col">가격</th>
-                          <td th:text="${info.price}"></td>
+                          <td th:text="${info.productPrice}"></td>
                         </tr>
                         <tr>
                           <th scope="col">원산지</th>
-                          <td th:text="${info.country}"></td>
+                          <td th:text="${info.productOrigin}"></td>
                         </tr>
                         <tr>
                           <th scope="col">품목</th>
-                          <td th:text="${info.kinds}"></td>
+                          <td th:text="${info.productCategory}"></td>
                         </tr>
                         <tr>
                           <th scope="col">등록일</th>

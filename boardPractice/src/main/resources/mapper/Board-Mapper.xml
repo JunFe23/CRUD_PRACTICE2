@@ -5,33 +5,47 @@
 
 <mapper namespace="com.example.newlearn.mapper.BoardMapper">
 
+    <sql id="selProduct">
+        SELECT *
+        FROM PRODUCT
+    </sql>
+
     <select id="getProductBoardList" resultType="com.example.newlearn.dto.ProductDto">
-        SELECT * FROM PRODUCTLIST
-        ORDER BY no
+        <include refid="selProduct"></include>
+        ORDER BY no DESC
     </select>
 
     <select id="productBoardDetail" parameterType="int" resultType="com.example.newlearn.dto.ProductDto">
-        SELECT * FROM PRODUCTLIST
+        <include refid="selProduct"></include>
         WHERE no=#{no}
     </select>
 
-    <insert id="productBoardInsert" parameterType="com.example.newlearn.dto.ProductDto" keyProperty="b_no">
-        INSERT INTO PRODUCTLIST (b_no, title, content, writer, reg_date)
-        VALUES(AUTO_INCREASE.nextval,#{title}, #{content}, #{writer},default)
+    <select id="getMyProductList" parameterType="java.lang.String" resultType="com.example.newlearn.dto.ProductDto">
+        <include refid="selProduct"></include>
+        WHERE ID=#{VALUE}
+    </select>
+
+    <insert id="productBoardInsert" parameterType="com.example.newlearn.dto.ProductDto" keyProperty="no">
+        INSERT INTO PRODUCT (id, productname, productprice, productorigin, productcategory, filename)
+        VALUES( #{id}, #{productName}, #{productPrice}, #{productOrigin}, #{productCategory}, #{fileName})
 
     </insert>
 
     <update id="productBoardUpdate" parameterType="com.example.newlearn.dto.ProductDto">
+        UPDATE PRODUCT SET productName=#{productName},
+        productPrice=#{productPrice},productOrigin=#{productOrigin},
+        productCategory=#{productCategory}
+        <if test="fileName!=null">
+            ,
+            fileName=#{fileName}
+        </if>
 
-        update PRODUCTLIST set
-        title=<if test="title != null">#{title}</if>,
-        content=<if test="content != null">#{content}</if>
-        where b_no=#{b_no}
+        WHERE NO=#{no}
 
     </update>
 
     <delete id="productBoardDelete" parameterType="int">
-        DELETE FROM PRODUCTLIST WHERE no=#{no}
+        DELETE FROM PRODUCT WHERE NO=#{no}
     </delete>
 </mapper>
 

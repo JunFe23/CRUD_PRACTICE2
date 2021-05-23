@@ -7,6 +7,7 @@ import java.util.List;
 public interface BoardService {
 
     List<ProductDto> getProductList();
+    List<ProductDto> getMyProductList(String id);
     ProductDto productBoardDetail(int no);
     int productBoardInsert(ProductDto productDto);
     int productBoardUpdate(ProductDto productDto);

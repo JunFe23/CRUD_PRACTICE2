@@ -19,6 +19,11 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public List<ProductDto> getMyProductList(String id) {
+        return boardMapper.getMyProductList(id);
+    }
+
+    @Override
     public ProductDto productBoardDetail(int no) {
         return boardMapper.productBoardDetail(no);
     }
