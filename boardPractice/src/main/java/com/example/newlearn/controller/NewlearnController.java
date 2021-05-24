@@ -103,7 +103,7 @@ public class NewlearnController {
 
         }
         if(productDto.getNo()==0) {
-//            productDto.setFileName("noimg.png");
+            productDto.setFileName("noimg.png");
             boardService.productBoardInsert(productDto);
         } else{
             boardService.productBoardUpdate(productDto);
