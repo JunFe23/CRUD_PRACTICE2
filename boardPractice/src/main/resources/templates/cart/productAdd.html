@@ -16,7 +16,7 @@
 		$("input[name='pk']").val(v.pk);
 		$("select[name='productCategory']").val(v.productCategory);
 		$("img#img").attr("src","/web/upProduct/"+v.fileName);
-		$("p.agr").html("<span class=\"button\" ><a href=\"#\" id=\"mod\">수정</a></span><span class=\"button\" ><a href=\"#\" id=\"cancel\">취소</a></span>")
+		$("p.agr").html("<span class=\"button\" ><a href=\"#\" id=\"mod\">수정</a></span><span class=\"button\" ><a href=\"#\" id=\"cancel\">취소</a></span>");
 		$("img#img").show();
 		$("a#cancel").click(function(){
 			location.reload();
@@ -30,10 +30,10 @@
 		$("img#img").hide();
 		$("a[name='modify']").click(function(){
 			$.ajax({
-				url:'/web/productInfo.do',
+				url:'myProductInfo',
 				type:'POST',
 				dataType:'json',
-				data:{pk:this.id},
+				data:{no:this.no},
 				success:function(v){
 					console.log(v);
 					infoModify(v);

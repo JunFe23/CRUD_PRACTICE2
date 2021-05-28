@@ -12,4 +12,5 @@ public interface BoardService {
     int productBoardInsert(ProductDto productDto);
     int productBoardUpdate(ProductDto productDto);
     int productBoardDelete(int no);
+    ProductDto getMyProductInfo(int id);
 }

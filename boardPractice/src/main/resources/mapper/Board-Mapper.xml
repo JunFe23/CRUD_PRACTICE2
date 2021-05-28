@@ -47,6 +47,13 @@
     <delete id="productBoardDelete" parameterType="int">
         DELETE FROM PRODUCT WHERE NO=#{no}
     </delete>
+
+    <select id="getMyProductInfo" parameterType="java.lang.Integer" resultType="com.example.newlearn.dto.ProductDto">
+        <include refid="selProduct"></include>
+        <where>
+            ID=#{VALUE}
+        </where>
+    </select>
 </mapper>
 
 

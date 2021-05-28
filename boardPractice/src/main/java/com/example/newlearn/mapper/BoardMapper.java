@@ -21,6 +21,8 @@ public interface BoardMapper {
     int productBoardUpdate(ProductDto productDto);
     //상품 삭제하기
     int productBoardDelete(int no);
+    //수정할 상품 불러오기
+    ProductDto getMyProductInfo(int no);
 
 
 }

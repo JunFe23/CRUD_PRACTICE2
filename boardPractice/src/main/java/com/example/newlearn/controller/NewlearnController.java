@@ -116,5 +116,10 @@ public class NewlearnController {
         return "redirect:/product";
     }
 
+    @RequestMapping(value="myProductInfo")
+    public ProductDto selectInfoProduct(int no) {
+        return boardService.getMyProductInfo(no);
+    }
+
 
 }

@@ -42,4 +42,9 @@ public class BoardServiceImpl implements BoardService {
     public int productBoardDelete(int no) {
         return boardMapper.productBoardDelete(no);
     }
+
+    @Override
+    public ProductDto getMyProductInfo(int id) {
+        return boardMapper.getMyProductInfo(id);
+    }
 }
