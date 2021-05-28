@@ -82,7 +82,7 @@ public class NewlearnController {
     @RequestMapping("/productInsert")
     public String productInsert(ProductDto productDto, @RequestParam(value="file",required = false)MultipartFile file) {
         //upload
-        String loc="/Users/junfe/Desktop/Coding/Spring/연습/boardPractice/src/main/resources/static/upload/";
+        String loc="/Users/junfe/Desktop/Coding/Spring/연습/CRUD_PRACTICE2/boardPractice/src/main/resources/static/upload/";
         System.out.println("NewlearnController.productInsert");
         FileOutputStream fos = null;
         String fileName = file.getOriginalFilename();
@@ -102,10 +102,13 @@ public class NewlearnController {
             }
 
         }
-        if(productDto.getNo()==0) {
+        if(productDto.getNo()==0&&productDto.getFileName()==null) {
             productDto.setFileName("noimg.png");
+        }
+        if(productDto.getNo()==0) {
             boardService.productBoardInsert(productDto);
-        } else{
+        }
+        else{
             boardService.productBoardUpdate(productDto);
         }
         System.out.println("productDto = " + productDto);
