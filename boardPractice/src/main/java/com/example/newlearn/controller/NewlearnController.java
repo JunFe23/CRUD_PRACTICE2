@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -116,9 +117,16 @@ public class NewlearnController {
         return "redirect:/product";
     }
 
-    @RequestMapping(value="myProductInfo")
+    @RequestMapping(value="/myProductInfo")
     public ProductDto selectInfoProduct(int no) {
         return boardService.getMyProductInfo(no);
+    }
+
+    @GetMapping(value = "/myProductDelete/{no}")
+    public String deleteMyProduct(@PathVariable("no") int no) {
+        System.out.println("no = " + no);
+        boardService.productBoardDelete(no);
+        return "redirect:/add";
     }
 
 

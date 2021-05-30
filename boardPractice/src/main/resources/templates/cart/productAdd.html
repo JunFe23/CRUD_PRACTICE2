@@ -13,27 +13,33 @@
 		$("input[name='productName']").val(v.productName);
 		$("input[name='productPrice']").val(v.productPrice);
 		$("input[name='productOrigin']").val(v.productOrigin);
-		$("input[name='pk']").val(v.pk);
+		$("input[name='no']").val(v.no);
 		$("select[name='productCategory']").val(v.productCategory);
-		$("img#img").attr("src","/web/upProduct/"+v.fileName);
-		$("p.agr").html("<span class=\"button\" ><a href=\"#\" id=\"mod\">수정</a></span><span class=\"button\" ><a href=\"#\" id=\"cancel\">취소</a></span>");
+		$("img#img").attr("src","/upload/"+v.fileName);
+		$("p.agr").html("&lt;span class='button'>&lt;a href='#' id='mod'>수정&lt;/a>&lt;/span>&lt;span class='button' >&lt;a href='#' id='cancel'>취소&lt;/a>&lt;/span>");
 		$("img#img").show();
 		$("a#cancel").click(function(){
 			location.reload();
 		});
+
 		$("a#mod").click(function(){
 			//$("form").attr("action","/web/modifyProduct.do");
 			$("form").submit();
 		});
 	}
+
+	function infoDelete() {
+
+	}
+
 	$(function(){
 		$("img#img").hide();
 		$("a[name='modify']").click(function(){
 			$.ajax({
-				url:'myProductInfo',
+				url:'/myProductInfo',
 				type:'POST',
 				dataType:'json',
-				data:{no:this.no},
+				data:{no:this.id},
 				success:function(v){
 					console.log(v);
 					infoModify(v);
@@ -48,6 +54,11 @@
 			//제약 사항추가
 			$("form").submit();
 		});
+
+		// 삭제
+		// $("a[name='delete']").click(function(){
+		//
+		// });
 	});
 </script>
 </head>
@@ -123,8 +134,8 @@
 										<td><img th:src="@{/upload/{fileName}(fileName=${i.fileName})}" width="50" height="50"></img></td>
 										<td>[[${i.productPrice}]]</td>
 										<td>
-											<span class="buttonFuc"><a href="#" name="modify" id="${i.no}">수정</a></span>
-											<span class="buttonFuc"><a href="#" >삭제</a></span>
+											<span class="buttonFuc"><a href="#" name="modify" th:id="${i.no}">수정</a></span>
+											<span class="buttonFuc"><a name="delete" th:href="@{/myProductDelete/{no}(no=${i.no})}">삭제</a></span>
 										</td>
 									</tr>
 
@@ -153,14 +164,14 @@
 											<th>상품명</th>
 											<td><input type="text" style="border:1px solid #ddd; height:20px;" name="productName" class="inputText"
 													   size="50" />
-												<input  type="hidden" name="id" th:value="${session.id}"/>
+<!--												<input  type="hidden" name="id" th:value="${session.id}"/>-->
 
 											</td>
 										</tr>
 										<tr>
 											<th>원산지</th>
 											<td>
-												<input type="hidden" name="no" value="0"/>
+												<input type="hidden" name="no" th:value="0"/>
 												<input type="text" style="border:1px solid #ddd; height:20px;" name="productOrigin" class="inputText"
 													   size="50" /></td>
 										</tr>
@@ -168,7 +179,6 @@
 											<th>상품가격</th>
 											<td><input type="text" style="border:1px solid #ddd; height:20px;" name="productPrice" class="inputText"
 													   size="50" />
-												<input  type="hidden" name="no" value="0"/>
 											</td>
 										</tr>
 										<tr>

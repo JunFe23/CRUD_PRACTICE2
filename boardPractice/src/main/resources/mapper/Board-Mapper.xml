@@ -51,9 +51,11 @@
     <select id="getMyProductInfo" parameterType="java.lang.Integer" resultType="com.example.newlearn.dto.ProductDto">
         <include refid="selProduct"></include>
         <where>
-            ID=#{VALUE}
+            NO=#{VALUE}
         </where>
     </select>
+
+
 </mapper>
 
 
