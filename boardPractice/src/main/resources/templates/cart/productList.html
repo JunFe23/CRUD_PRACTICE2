@@ -114,17 +114,33 @@
 								</tbody>
 							</table>
 
-						<div class="container" style="width:900px;">
-							<ul class="pagination" >
-								<li><a href="#">이전</a></li>
-								<li><a href="#">1</a></li>
-								<li class="active"><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">다음</a></li>
-							</ul>
-						</div>
+
+							<th:block layout:fragment="paging">
+								<nav th:replace="cart/fragments/common :: pagination"></nav>
+							</th:block>
+<!--						<div class="container" style="width:900px;">-->
+<!--							<ul class="pagination" >-->
+<!--								<li><a href="#">이전</a></li>-->
+<!--								<li><a href="#">1</a></li>-->
+<!--								<li class="active"><a href="#">2</a></li>-->
+<!--								<li><a href="#">3</a></li>-->
+<!--								<li><a href="#">4</a></li>-->
+<!--								<li><a href="#">5</a></li>-->
+<!--								<li><a href="#">다음</a></li>-->
+<!--							</ul>-->
+<!--						</div>-->
+
+						<th:block layout:fragment="script">
+							<script th:inline="javascript">
+								/*<![CDATA[*/
+
+								function movePage(uri, queryString) {
+									location.href = uri + queryString;
+								}
+
+								/*]]>*/
+							</script>
+						</th:block>
 						</div>
 					</div>
 				</div>

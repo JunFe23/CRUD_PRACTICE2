@@ -56,6 +56,25 @@
     </select>
 
 
+    <!-- paging -->
+    <select id="selectProductList" parameterType="com.example.newlearn.dto.ProductDto" resultType="com.example.newlearn.dto.ProductDto">
+        SELECT
+        *
+        FROM
+        PRODUCT
+        ORDER BY
+        regdate DESC
+        LIMIT
+        #{paginationInfo.firstRecordIndex}, #{recordsPerPage}
+    </select>
+
+    <select id="selectProductTotalCount" parameterType="com.example.newlearn.dto.ProductDto" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            PRODUCT
+    </select>
+
 </mapper>
 
 

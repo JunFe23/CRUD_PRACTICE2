@@ -1,17 +1,16 @@
 package com.example.newlearn.controller;
 
+import com.example.newlearn.paging.Criteria;
 import com.example.newlearn.dto.MemberDto;
 import com.example.newlearn.dto.ProductDto;
 import com.example.newlearn.service.BoardService;
 import com.example.newlearn.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -58,14 +57,24 @@ public class NewlearnController {
     }
 
     @RequestMapping("/product")
-    private String productList(Model model) {
+    private String productList(@ModelAttribute("params") ProductDto params, Model model) {
         List<ProductDto> productDtos;
 
-        productDtos = boardService.getProductList();
+        productDtos = boardService.getProductList(params);
         model.addAttribute("productDtos", productDtos);
 
         return "cart/productList";
     }
+
+//    @RequestMapping("/product")
+//    private String productList(Model model) {
+//        List<ProductDto> productDtos;
+//
+//        productDtos = boardService.getProductList();
+//        model.addAttribute("productDtos", productDtos);
+//
+//        return "cart/productList";
+//    }
 
     @GetMapping("/productInfo/{no}")
     private String productInfo(@PathVariable("no")int no, Model model) {

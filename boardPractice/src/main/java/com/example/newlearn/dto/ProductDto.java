@@ -9,7 +9,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 //@ToString(of = {"no","productname","img","country","price","kinds","redgdate","id"})
-public class ProductDto {
+public class ProductDto extends CommonDto{
     private int    no;
     private String id;
     private String productName;

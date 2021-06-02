@@ -1,5 +1,6 @@
 package com.example.newlearn.service;
 
+import com.example.newlearn.paging.Criteria;
 import com.example.newlearn.dto.ProductDto;
 
 import java.util.List;
@@ -13,4 +14,7 @@ public interface BoardService {
     int productBoardUpdate(ProductDto productDto);
     int productBoardDelete(int no);
     ProductDto getMyProductInfo(int no);
+
+    // 페이징
+    public List<ProductDto> getProductList(ProductDto params);
 }

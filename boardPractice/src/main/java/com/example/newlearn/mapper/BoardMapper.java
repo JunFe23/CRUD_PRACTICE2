@@ -1,6 +1,6 @@
 package com.example.newlearn.mapper;
 
-import com.example.newlearn.dto.Criteria;
+import com.example.newlearn.paging.Criteria;
 import com.example.newlearn.dto.ProductDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,6 +23,12 @@ public interface BoardMapper {
     int productBoardDelete(int no);
     //수정할 상품 불러오기
     ProductDto getMyProductInfo(int no);
+
+
+    //페이징
+    public List<ProductDto> selectProductList(ProductDto params);
+
+    public int selectProductTotalCount(ProductDto params);
 
 
 }
