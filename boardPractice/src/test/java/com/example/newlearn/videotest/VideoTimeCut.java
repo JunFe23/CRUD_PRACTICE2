@@ -14,7 +14,7 @@ public class VideoTimeCut {
 
         try {
             FFprobe ffprobe = new FFprobe("/opt/homebrew/Cellar/ffmpeg/4.4_1/bin/ffprobe"); // homebrew에 설치된  ffprobe.exe 경로
-            FFmpegProbeResult probeResult = ffprobe.probe("/Users/junfe/Desktop/2.mp4"); // 동영상 경로
+            FFmpegProbeResult probeResult = ffprobe.probe("/Users/junfe/Desktop/1.mp4"); // 동영상 경로
             FFmpegFormat format = probeResult.getFormat();
             double second = format.duration; // 초단위
             int h = (int)second/3600;
